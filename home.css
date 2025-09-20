@@ -1,0 +1,163 @@
+/* ===========================
+   Color Palette
+   =========================== */
+:root {
+  --blush: #CC8A92;
+  --blush-200: #D69BA3;
+  --gold:  #C8A165;
+  --black: #1E1E1E;
+  --white: #FFFFFF;
+  --sand:  #F3E8E6;
+  --ink:   #0A0A0A;
+}
+
+/* ===========================
+   Base
+   =========================== */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--ink);
+  background: var(--sand);
+  line-height: 1.6;
+}
+.container { width: min(1200px, 92vw); margin: 0 auto; }
+.sr-only { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0); }
+
+/* ===========================
+   Header
+   =========================== */
+.site-header { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid #eee; }
+.header-inner { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+.brand { font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.5px; font-size:clamp(40px,5vw,64px); }
+.main-nav { display:flex; gap:18px; }
+.nav-link { text-decoration:none; color:var(--black); padding:8px 6px; border-radius:10px; font-weight:500; }
+.nav-link:hover { background:var(--blush-200); }
+.nav-toggle { display:none; }
+
+/* ===========================
+   Hero – Full Background Slideshow
+   =========================== */
+.hero.hero-full {
+  position: relative;
+  min-height: 100vh;
+  border-bottom: none;
+  overflow: hidden;
+  z-index: 10;
+  background: #000;
+}
+.hero-bg { position:absolute; inset:0; z-index:0; }
+.fslide {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit: cover; object-position: 30% center;
+  opacity:0; animation: heroCrossfade 12s infinite ease-in-out;
+  filter: brightness(0.82) contrast(1.05);
+}
+.f2 { animation-delay: 6s; }
+@keyframes heroCrossfade {
+  0% { opacity: 0; } 8% { opacity: 1; } 42% { opacity: 1; }
+  50% { opacity: 0; } 100% { opacity: 0; }
+}
+.hero-gradient {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(90% 120% at 80% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.50) 85%),
+    linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.20) 55%, rgba(0,0,0,0.38) 85%);
+}
+.hero-inner {
+  position: relative; z-index: 2; height: 100%;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.hero-content { color: var(--white); max-width: 520px; padding: clamp(24px, 5vw, 48px); }
+.reform-headline { font-family: "Playfair Display", serif; font-size: clamp(42px, 6vw, 72px); margin: 0 0 10px 0; font-weight: 700; }
+.tagline { color: #ECECEC; margin: 0; }
+
+/* ===========================
+   Brand Story
+   =========================== */
+.brand-story {
+  position: relative; z-index: 1;
+  padding: clamp(28px, 5vw, 56px) 0;
+  border-top: none; background: var(--sand);
+}
+.story-card {
+  border: 2px solid var(--gold);
+  background: var(--white);
+  padding: clamp(18px, 4vw, 28px);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.05);
+  font-size: clamp(16px, 1.1vw, 18px); line-height: 1.7;
+}
+
+/* ===========================
+   Connect / Masonry
+   =========================== */
+.connect {
+  padding: clamp(28px, 6vw, 72px) 0;
+  background: linear-gradient(180deg, var(--white) 0%, var(--sand) 100%);
+  border-top: 1px solid #eee;
+}
+.connect-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; }
+.connect h2 { margin:0; font-family:"Playfair Display",serif; font-weight:600; }
+
+.ig-handle {
+  display:inline-flex; align-items:center; gap:8px;
+  text-decoration:none; color:var(--black);
+  padding:10px 14px; border-radius:24px; background:var(--white);
+  border:1px solid var(--blush-200);
+}
+.ig-handle:hover { background:#fff7f7; }
+.ig-handle svg { color:var(--gold); }
+
+/* Masonry columns */
+.ig-masonry{
+  column-count: 4;
+  column-gap: 14px;
+  margin-top: 8px;
+}
+.ig-pin{
+  break-inside: avoid;
+  display: block;
+  margin: 0 0 14px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e9e9e9;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  background: #d9d9d9; /* grey placeholder */
+}
+.ig-pin a{ display:block; text-decoration:none; }
+.ig-pin img{
+  width: 100%; height: auto; display: block;
+  transition: transform .4s ease;
+}
+.ig-pin:hover img{ transform: scale(1.03); }
+
+.ig-more{
+  display:inline-block; margin-top:16px; font-weight:600;
+  color: var(--black); text-decoration:none; border-bottom:2px solid var(--gold); padding-bottom:2px;
+}
+.ig-more:hover{ opacity:.85; }
+
+/* Responsive columns */
+@media (max-width: 1000px){ .ig-masonry{ column-count: 3; } }
+@media (max-width: 680px){ .ig-masonry{ column-count: 2; } }
+
+/* ===========================
+   Footer
+   =========================== */
+.site-footer { padding:22px 0; background:var(--white); border-top:1px solid #eee; }
+.footer-inner { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:14px; }
+.footer-links a { color:var(--black); text-decoration:none; margin-left:14px; }
+.footer-links a:hover { text-decoration:underline; }
+
+/* ===========================
+   Responsive (shared)
+   =========================== */
+@media (max-width: 1000px) {
+  .hero-inner { justify-content: center; text-align: center; }
+}
+@media (max-width: 680px) {
+  .main-nav { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
